@@ -8,6 +8,7 @@ export default function Home({ posts }) {
   return (
     <div className="container mx-auto px-10 mb-8 ">
       <Head>
+      <meta name="google-site-verification" content="NV2AQHbgu8fAUbWSP1fNo__OcBTCy-ZVJ93HdpLKGK0" />
         <title>Reason And Faith</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
