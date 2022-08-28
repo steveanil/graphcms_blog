@@ -1,6 +1,9 @@
 import React from 'react';
 import moment from 'moment';
 import Link from 'next/link';
+import Image from 'next/image';
+
+import { grpahCMSImageLoader } from '../util';
 
 const PostCard = ({ post }) => {
 
@@ -20,13 +23,15 @@ const PostCard = ({ post }) => {
       </h1>
       <div className='block lg:flex text-center items-center justify-center mb-8 w-full'>
         <div className='flex items-center justify-center mb-4 lg:mb-0 w-full lg:w-auto mr-8'>
-          <img 
-            alt={post.author.name}
-            height="30px"
-            width="30px"
-            className='aign-middle rounded-full'
-            src={post.author.photo.url}
-          />
+        <Image
+          unoptimized
+          loader={grpahCMSImageLoader}
+          alt={post.author.name}
+          height="30px"
+          width="30px"
+          className="align-middle rounded-full"
+          src={post.author.photo.url}
+        />
           <p className='inline align-middle text-gray-700 ml-2 text-lg'>{post.author.name}</p>
         </div>
         <div className='font-medium text-gray-700'>
@@ -50,4 +55,4 @@ const PostCard = ({ post }) => {
   )
 }
 
-export default PostCard
+export default PostCard;
