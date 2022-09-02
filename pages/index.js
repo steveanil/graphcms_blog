@@ -8,8 +8,9 @@ export default function Home({ posts }) {
   return (
     <div className="container mx-auto px-10 mb-8 ">
       <Head>
-      <meta name="google-site-verification" content="NV2AQHbgu8fAUbWSP1fNo__OcBTCy-ZVJ93HdpLKGK0" />
-        <title>Reason And Faith</title>
+        <title>Bible Apologist</title>
+        <meta name='description' content="Bible Apologist aims to defend the bible from lies and deception and provide sound theology to the users of this apologetics website."></meta>
+        <meta name='keywords' content='Bible, Theology, Trinity, Jesus Christ, Truth, Apologetics, Questions and Answers, Islam'></meta>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <FeaturedPosts />
@@ -32,7 +33,7 @@ export async function getStaticProps() {
   const posts = (await getPosts()) || [];
 
   return {
-    props: { posts }
-  }
+    props: { posts },
+  };
 }
 

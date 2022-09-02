@@ -16,17 +16,17 @@ const Header = () => {
   return (
     <div className='container mx-auto px-10 mb-8'>
         <div className='border-b w-full inline-block border-blue-400 py-8'>
-            <div className='md: float-left block'>
+            <div className='md:float-left block'>
                 <Link href='/'>
-                    <span className='cursor-pointer font-bold text-4xl text-white'>
-                        ReasonAndFaith
+                    <span className='cursor-pointer font-bold text-4xl text-white md:float-right transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110'>
+                        BIBLE APOLOGIST
                     </span>
                 </Link>
             </div>
             <div className='hidden md:float-left md:contents'>
                 {categories.map((category) => (
                     <Link key={category.slug} href={`/category/${category.slug}`}>
-                        <span className='md:float-right text-white mt-2 align-middle transition duration-400 hover:bg-gradient-to-r from-pink-500 to-yellow-500 hover:text-transparent bg-clip-text transform hover:-translate-y-1 ml-4 font-bold cursor-pointer'>
+                        <span className='md:float-right text-white mt-2 align-middle transition ease-in-out delay-15 hover:-translate-y-1 hover:scale-110 ml-4 font-bold cursor-pointer'>
                             {category.name}
                         </span>
                     </Link>
