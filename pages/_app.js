@@ -8,6 +8,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <Layout>
       <Component {...pageProps} />
+      <title>Bible Apologist</title>
     </Layout>
     
   )
