@@ -9,7 +9,7 @@ export default function Home({ posts }) {
     <div className="container mx-auto px-10 mb-8 ">
       <Head>
         <title>Bible Apologist</title>
-        <meta name='description' content="Bible Apologist aims to defend the bible from lies and deception and provide sound theology to the users of this apologetics website."></meta>
+        <meta name='description' content='Bible Apologist aims to defend the bible from lies and deception and provide sound theology to the users of this apologetics website.'></meta>
         <meta name='keywords' content='Bible, Theology, Trinity, Jesus Christ, Truth, Apologetics, Questions and Answers, Islam'></meta>
         <link rel="icon" href="/favicon.ico" />
       </Head>
