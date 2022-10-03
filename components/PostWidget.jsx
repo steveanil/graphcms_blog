@@ -41,7 +41,7 @@ const PostWidget = ({ categories, slug }) => {
           </div>
           <div className='flex-grow ml-4'>
             <p className='text-gray-500 font-xs'>
-              {moment(post.createdAt).format('MMM DD, YYYY')}
+              Created At: {moment(post.createdAt).format('MMM DD, YYYY')}
             </p>
             <Link href={`/post/${post.slug}`} key={post.title} className="text-md">
               {post.title}

@@ -17,6 +17,7 @@ export const getPosts = async () => {
                 url
               }
             }
+            updatedAt
             createdAt
             slug
             title
@@ -70,7 +71,7 @@ export const getPostDetails = async (slug) => {
             url
           }
         }
-        createdAt
+        updatedAt
         slug
         content {
           raw
@@ -109,37 +110,37 @@ export const getSimilarPosts = async (categories, slug) => {
   return result.posts;
 };
 
-export const getAdjacentPosts = async (createdAt, slug) => {
+export const getAdjacentPosts = async (updatedAt, slug) => {
   const query = gql`
-    query GetAdjacentPosts($createdAt: DateTime!,$slug:String!) {
+    query GetAdjacentPosts($updatedAt: DateTime!,$slug:String!) {
       next:posts(
         first: 1
-        orderBy: createdAt_ASC
-        where: {slug_not: $slug, AND: {createdAt_gte: $createdAt}}
+        orderBy: updatedAt_ASC
+        where: {slug_not: $slug, AND: {updatedAt_gte: $updatedAt}}
       ) {
         title
         featuredImage {
           url
         }
-        createdAt
+        updatedAt
         slug
       }
       previous:posts(
         first: 1
-        orderBy: createdAt_DESC
-        where: {slug_not: $slug, AND: {createdAt_lte: $createdAt}}
+        orderBy: updatedAt_DESC
+        where: {slug_not: $slug, AND: {updatedAt_lte: $updatedAt}}
       ) {
         title
         featuredImage {
           url
         }
-        createdAt
+        updatedAt
         slug
       }
     }
   `;
 
-  const result = await request(graphqlAPI, query, { slug, createdAt });
+  const result = await request(graphqlAPI, query, { slug, updatedAt });
 
   return { next: result.next[0], previous: result.previous[0] };
 };
@@ -159,7 +160,7 @@ export const getCategoryPost = async (slug) => {
                 url
               }
             }
-            createdAt
+            updatedAt
             slug
             title
             excerpt
@@ -196,7 +197,7 @@ export const getFeaturedPosts = async () => {
         }
         title
         slug
-        createdAt
+        updatedAt
       }
     }   
   `;
@@ -223,7 +224,7 @@ export const getComments = async (slug) => {
     query GetComments($slug:String!) {
       comments(where: {post: {slug:$slug}}){
         name
-        createdAt
+        updatedAt
         comment
       }
     }
@@ -238,7 +239,7 @@ export const getRecentPosts = async () => {
   const query = gql`
     query GetPostDetails() {
       posts(
-        orderBy: createdAt_ASC
+        orderBy: updatedAt_ASC
         last: 3
       ) {
         title
