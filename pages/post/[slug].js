@@ -17,14 +17,16 @@ const PostDetails = ({ post }) => {
     <>
       <div className="container mx-auto px-10 mb-8">
         <Head>
-          <title>{post.title} - Bible Apologist</title>
+          <title lang='en-gb'>{post.title} - Bible Apologist</title>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
           <meta name="description" content={`${post.excerpt}`} />
           <meta property="og:title" content={`${ post.title } - Bible Apologist`} />
-          <meta property="og:description" content={`Learn more about: ${post.title}`} />
+          <meta property="og:description" content={`${post.excerpt}`} />
           <meta property="url" content={`https://www.bibleapologist.com/post/${post.slug}`} />
           <meta property="og:type" content="website" />
           <meta name='keywords' content={`${post.title}, Bible, Bible Apologist, bible apologist, Theology, Trinity, Jesus Christ, Truth, Apologetics,Answering Islam, Islam, Quran, Muhammad, Christianity`}></meta>
-          <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+          <meta property="og:image" content={`${post.featuredImage.url}`} />
+          <meta property="og:image:alt" content={`${post.title}`} />
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
