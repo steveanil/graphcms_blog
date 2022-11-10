@@ -1,7 +1,9 @@
+// minimal graphql client
 import { request, gql } from 'graphql-request';
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 
+// MyQuery is just a variable/name
 export const getPosts = async () => {
   const query = gql`
     query MyQuery {
@@ -50,6 +52,7 @@ export const getCategories = async () => {
     }
   `;
 
+  // This is where we are fetching from
   const result = await request(graphqlAPI, query);
 
   return result.categories;

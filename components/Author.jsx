@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-import { grpahCMSImageLoader } from '../util';
+import { graphCMSImageLoader } from '../util';
 
 export const Author = ({ author }) => {
   return (
@@ -10,7 +10,7 @@ export const Author = ({ author }) => {
         <Image
         alt={author.name}
         unoptimized
-        loader={grpahCMSImageLoader}
+        loader={graphCMSImageLoader}
         height="100px"
         width="100px"
         className='align-middle rounded-full'
