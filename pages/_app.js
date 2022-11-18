@@ -1,16 +1,16 @@
-import React from 'react'
+/* eslint-disable import/no-extraneous-dependencies */
+import React from 'react';
 import { Layout } from '../components';
 
 import 'tailwindcss/tailwind.css';
 import '../styles/globals.scss';
 
-function MyApp({ Component, pageProps }) {
-  return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
-    
-  )
-}
+const MyApp = ({ Component, pageProps }) => (
+  <Layout>
+    {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+    <Component {...pageProps} />
+  </Layout>
 
-export default MyApp
+);
+
+export default MyApp;
