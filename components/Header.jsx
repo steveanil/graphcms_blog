@@ -19,7 +19,7 @@ const Header = () => {
       .then((newCategories) => setCategories(newCategories));
   }, []);
   return (
-    <div className="shadow-md w-full sticky top-0 left-0 z-50 mb-8">
+    <div className="shadow-md w-full sticky top-0 left-0 z-50 mb-10">
       <div className="pb-5 h-full md:flex items-center justify-between bg-white py-4 md:px-10 px-7">
         <div className="font-bold text-3xl flex items-center text-gray-800">
           <Link href="/" passHref>
@@ -35,7 +35,7 @@ const Header = () => {
             <h1 className="hover:cursor-pointer">Bible Apologist</h1>
           </Link>
         </div>
-        <div onClick={() => setToggle(!toggle)} className="text-3xl absolute right-5 top-6 cursor-pointer md:hidden">
+        <div onClick={() => setToggle(!toggle)} className="text-3xl absolute right-2 top-6 cursor-pointer md:hidden">
           <ion-icon name={`${toggle ? 'close' : 'menu'}`}></ion-icon>
         </div>
         <ul className={`md:flex md:items-center md:pb-0 absolute md:static bg-white md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease in ${toggle ? 'top-20 opacity-100' : 'top-[-490px]'} md:opacity-100`}>
