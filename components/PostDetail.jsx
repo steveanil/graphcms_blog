@@ -68,20 +68,22 @@ const PostDetail = ({ post }) => (
           }) => {
             if (href.match(/^https?:\/\/|^\/\//i)) {
               return (
-                <Link
-                  href={href}
-                  className="text-sky-400 font-semibold"
-                  rel="noopener noreferrer"
-                  target={openInNewTab ? '_blank' : '_self'}
-                  {...rest}
-                >
-                  {children}
+                <Link legacyBehavior href={href} passHref>
+                  <a
+                    href={href}
+                    target={openInNewTab ? '_blank' : '_self'}
+                    rel="noopener noreferrer"
+                    className="text-sky-400 font-semibold"
+                    {...rest}
+                  >
+                    {children}
+                  </a>
                 </Link>
               );
             }
             return (
-              <Link href={href} rel="noopener noreferrer" {...rest}>
-                {children}
+              <Link legacyBehavior href={href} passHref>
+                <a {...rest}>{children}</a>
               </Link>
             );
           },
