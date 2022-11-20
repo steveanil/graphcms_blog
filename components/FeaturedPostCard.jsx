@@ -5,11 +5,14 @@ import Link from 'next/link';
 
 const FeaturedPostCard = ({ post }) => (
   <div className="relative h-72">
-    <div className="absolute bg-center bg-no-repeat bg-cover shadow-md inline-block w-full h-72">
+    <div className="absolute rounded-lg shadow-md w-full h-full">
       <Image
-        layout="fill"
-        objectFit="cover"
         src={post.featuredImage.url}
+        alt={post.title}
+        priority
+        width={800}
+        height={400}
+        className="w-full h-full"
       />
     </div>
     <div className="absolute rounded-lg bg-center bg-gradient-to-b opacity-50 from-gray-400 via-gray-700 to-black w-full h-72" />
@@ -19,8 +22,8 @@ const FeaturedPostCard = ({ post }) => (
       <div className="flex items-center absolute bottom-5 w-full justify-center">
         <Image
           alt={post.author.name}
-          height="30px"
-          width="30px"
+          height="30"
+          width="30"
           className="align-middle drop-shadow-lg rounded-full"
           src={post.author.photo.url}
         />

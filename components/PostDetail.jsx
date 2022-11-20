@@ -10,12 +10,10 @@ const PostDetail = ({ post }) => (
     <div className="relative overflow-hidden shadow-md mb-6">
       <Image
         priority
-        height="600px"
-        width="900px"
-        layout="responsive"
+        height={600}
+        width={900}
         src={post.featuredImage.url}
         alt={post.title}
-        objectFit="cover"
         className="object-top h-full w-full object-cover shadow-lg rounded-t-lg lg:rounded-lg"
       />
     </div>
@@ -24,8 +22,8 @@ const PostDetail = ({ post }) => (
         <div className="hidden md:flex items-center justify-center lg:mb-0 lg:w-auto mr-8">
           <Image
             alt={post.author.name}
-            height="30px"
-            width="30px"
+            height="30"
+            width="30"
             className="align-middle rounded-full"
             src={post.author.photo.url}
           />
@@ -51,7 +49,7 @@ const PostDetail = ({ post }) => (
           h3: ({ children }) => <h3 className="text-xl font-semibold mb-4">{children}</h3>,
           h4: ({ children }) => <h4 className="text-md font-semibold mb-4">{children}</h4>,
           blockquote: ({ children }) => (
-            <div className="p-4 italic my-4 bg-gray-50 border-l-4 border-gray-300 dark:border-gray-500 dark:text-white dark:bg-neutral-500">
+            <div className="p-4 italic my-4 bg-gray-50 border-l-4 border-gray-300 dark:border-yellow-800 dark:text-white dark:bg-yellow-600">
               {children}
             </div>
           ),
@@ -63,7 +61,6 @@ const PostDetail = ({ post }) => (
               alt={altText}
               height={height}
               width={width}
-              objectFit="cover"
             />
           ),
           a: ({
@@ -71,22 +68,20 @@ const PostDetail = ({ post }) => (
           }) => {
             if (href.match(/^https?:\/\/|^\/\//i)) {
               return (
-                <Link href={href} passHref>
-                  <a
-                    href={href}
-                    target={openInNewTab ? '_blank' : '_self'}
-                    rel="noopener noreferrer"
-                    className="text-sky-400 font-semibold"
-                    {...rest}
-                  >
-                    {children}
-                  </a>
+                <Link
+                  href={href}
+                  className="text-sky-400 font-semibold"
+                  rel="noopener noreferrer"
+                  target={openInNewTab ? '_blank' : '_self'}
+                  {...rest}
+                >
+                  {children}
                 </Link>
               );
             }
             return (
-              <Link href={href} passHref>
-                <a {...rest}>{children}</a>
+              <Link href={href} rel="noopener noreferrer" {...rest}>
+                {children}
               </Link>
             );
           },

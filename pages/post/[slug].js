@@ -16,7 +16,7 @@ const PostDetails = ({ post }) => {
   return (
     <div className="container mx-auto px-10 mb-8">
       <Head lang="en-gb">
-        <title lang="en-gb">{post.title} - Bible Apologist</title>
+        <title lang="en-gb">{`${post.title} - Bible Apologist`}</title>
 
         <link rel="canonical" href={`https://www.bibleapologist.com/post/${post.slug}`} />
 
@@ -30,10 +30,6 @@ const PostDetails = ({ post }) => {
         <meta property="og:type" content="website" />
         <meta property="og:image" content={`${post.featuredImage.url}`} />
         <meta property="og:image:alt" content={`${post.title}`} />
-
-        <script noModule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js" />
-        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js" />
-
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">

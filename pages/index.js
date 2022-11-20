@@ -22,10 +22,6 @@ export default function Home({ posts }) {
         <meta property="og:url" content="https://www.bibleapologist.com/" />
         <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
-
-        <script noModule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js" />
-        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js" />
-
       </Head>
       <FeaturedPosts />
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">

@@ -3,7 +3,6 @@ import Image from 'next/image';
 import moment from 'moment';
 import Link from 'next/link';
 
-import { graphCMSImageLoader } from '../util';
 import { getRecentPosts, getSimilarPosts } from '../services';
 
 const PostWidget = ({ categories, slug }) => {
@@ -28,13 +27,12 @@ const PostWidget = ({ categories, slug }) => {
       </h3>
       {relatedPosts.map((post) => (
         <div key={post.title} className="flex items-center w-full mb-4">
-          <div className="w-16 flex-none">
+          <div className="relative w-16 h-16 flex-none">
             <Image
-              loader={graphCMSImageLoader}
               alt={post.title}
-              height="60px"
-              width="60px"
-              className="align-middle rounded-full"
+              width={100}
+              height={100}
+              className="align-middle rounded-full w-full h-full"
               src={post.featuredImage.url}
             />
           </div>
