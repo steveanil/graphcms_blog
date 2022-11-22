@@ -21,12 +21,12 @@ const PostCard = ({ post }) => (
       </Link>
     </h1>
     <div className="block lg:flex text-center items-center justify-center mb-8 w-full">
-      <div className="flex items-center justify-center mb-4 lg:mb-0 w-full h-full lg:w-auto mr-8">
+      <div className="flex items-center h-full justify-center mb-4 lg:mb-0 lg:w-auto mr-8">
         <Image
           alt={post.author.name}
           height="35"
           width="30"
-          className="align-middle rounded-full"
+          className="align-middle rounded-full w-auto"
           src={post.author.photo.url}
         />
         <p className="inline align-middle text-gray-700 ml-2 font-medium text-lg">{post.author.name}</p>
