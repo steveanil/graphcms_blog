@@ -7,7 +7,7 @@ const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 export const getPosts = async () => {
   const query = gql`
     query MyQuery {
-      postsConnection {
+      postsConnection(first: 15, orderBy: updatedAt_DESC) {        
         edges {
           cursor
           node {
@@ -20,7 +20,6 @@ export const getPosts = async () => {
               }
             }
             updatedAt
-            createdAt
             slug
             title
             excerpt
@@ -32,6 +31,13 @@ export const getPosts = async () => {
               slug
             }
           }
+        }
+        pageInfo {
+          hasNextPage
+          hasPreviousPage
+          startCursor
+          endCursor
+          pageSize
         }
       }
     }
