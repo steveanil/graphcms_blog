@@ -1,7 +1,7 @@
 /* eslint-disable react/function-component-definition */
 import Head from 'next/head';
 
-import { Pagination, PostCard, PostWidget } from '../components';
+import { PostCard, PostWidget } from '../components';
 import { getPosts } from '../services';
 
 // posts is a prop
