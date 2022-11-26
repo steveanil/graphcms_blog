@@ -103,12 +103,13 @@ export const getSimilarPosts = async (categories, slug) => {
     query GetPostDetails($slug: String!, $categories: [String!]) {
       posts(
         where: {slug_not: $slug, AND: {categories_some: {slug_in: $categories}}}
-        last: 3
+        last: 2
       ) {
         title
         featuredImage {
           url
         }
+        updatedAt
         createdAt
         slug
       }
@@ -124,8 +125,8 @@ export const getAdjacentPosts = async (updatedAt, slug) => {
     query GetAdjacentPosts($updatedAt: DateTime!,$slug:String!) {
       next:posts(
         first: 1
-        orderBy: updatedAt_ASC
-        where: {slug_not: $slug, AND: {updatedAt_gte: $updatedAt}}
+        orderBy: updatedAt_DESC
+        where: {slug_not: $slug, AND: {updatedAt_lte: $updatedAt}}
       ) {
         title
         featuredImage {
@@ -136,8 +137,8 @@ export const getAdjacentPosts = async (updatedAt, slug) => {
       }
       previous:posts(
         first: 1
-        orderBy: updatedAt_DESC
-        where: {slug_not: $slug, AND: {updatedAt_lte: $updatedAt}}
+        orderBy: updatedAt_ASC
+        where: {slug_not: $slug, AND: {updatedAt_gte: $updatedAt}}
       ) {
         title
         featuredImage {
@@ -249,13 +250,14 @@ export const getRecentPosts = async () => {
     query GetPostDetails() {
       posts(
         orderBy: updatedAt_ASC
-        last: 3
+        last: 2
       ) {
         title
         featuredImage {
           url
         }
         createdAt
+        updatedAt
         slug
       }
     }

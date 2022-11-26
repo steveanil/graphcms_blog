@@ -7,11 +7,14 @@ const PostCard = ({ post }) => (
   <div className="bg-white shadow-lg rounded-xl p-0 lg:p-7 pb-12 mb-8">
     <div className="relative overflow-hidden shadow-md pb-80 mb-7">
       <Image
+        legacyBehavior
         priority
-        width={500}
-        height={400}
+        // width={500}
+        // height={400}
         src={post.featuredImage.url}
         alt={post.title}
+        layout="fill"
+        objectFit="cover"
         className="object-top absolute w-full h-full object-cover shadow-lg rounded-t-lg lg:rounded-xl"
       />
     </div>
