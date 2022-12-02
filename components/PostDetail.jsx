@@ -8,15 +8,18 @@ import Link from 'next/link';
 import { AiFillCalendar } from 'react-icons/ai';
 
 const PostDetail = ({ post }) => (
-  <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8">
-    <div className="relative overflow-hidden shadow-md mb-6">
+  <div className="bg-white dark:bg-slate-800 dark:text-slate-200 shadow-lg rounded-lg lg:p-8 pb-12 mb-8">
+    <div className="relative overflow-hidden shadow-md pb-64 lg:py-64 mb-6">
       <Image
         priority
-        height={600}
-        width={900}
         src={post.featuredImage.url}
         alt={post.title}
-        className="object-top h-full w-full object-cover shadow-lg rounded-t-lg lg:rounded-lg"
+        fill
+        sizes="(max-width: 768px) 100vw,
+        (max-width: 1200px) 50vw,
+        33vw"
+        quality={100}
+        className="object-cover shadow-lg rounded-t-lg lg:rounded-lg"
       />
     </div>
     <div className="px-4 lg:px-0">
@@ -29,11 +32,11 @@ const PostDetail = ({ post }) => (
             className="align-middle rounded-full"
             src={post.author.photo.url}
           />
-          <p className="inline align-middle text-gray-700 ml-2 font-medium text-lg">{post.author.name}</p>
+          <p className="dark:text-white dark:font-bold inline align-middle text-gray-700 ml-2 font-medium text-lg">{post.author.name}</p>
         </div>
         <div className="font-medium text-gray-700">
           <AiFillCalendar className="h-6 w-6 inline mr-2 text-blue-500" />
-          <span className="align-middle">
+          <span className="dark:text-white align-middle">
             Updated At:
             {' '}
             {moment(post.updatedAt).format('MMM DD, YYYY')}
@@ -49,7 +52,7 @@ const PostDetail = ({ post }) => (
           h3: ({ children }) => <h3 className="text-xl font-semibold mb-4">{children}</h3>,
           h4: ({ children }) => <h4 className="text-md font-semibold mb-4">{children}</h4>,
           blockquote: ({ children }) => (
-            <div className="p-4 italic my-4 bg-gray-50 border-l-4 border-gray-300 dark:border-yellow-800 dark:text-white dark:bg-yellow-600">
+            <div className="p-4 italic my-4 bg-gray-50 border-l-4 border-gray-300 dark:border-neutral-400 dark:text-white dark:bg-slate-500">
               {children}
             </div>
           ),
