@@ -18,7 +18,6 @@ const PostDetail = ({ post }) => (
         sizes="(max-width: 768px) 100vw,
         (max-width: 1200px) 50vw,
         33vw"
-        quality={100}
         className="object-cover shadow-lg rounded-t-lg lg:rounded-lg"
       />
     </div>
