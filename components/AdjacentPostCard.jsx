@@ -6,12 +6,14 @@ import Image from 'next/image';
 const AdjacentPostCard = ({ post, position }) => (
   <>
     <Image
-      priority
-      width={400}
-      height={200}
-      alt={post.title}
       src={post.featuredImage.url}
-      className="absolute rounded-lg block shadow-md w-full h-full"
+      alt={post.title}
+      priority
+      fill
+      sizes="(max-width: 768px) 100vw,
+        (max-width: 1200px) 50vw,
+        33vw"
+      className="absolute object-cover rounded-lg block shadow-md w-full h-full"
     />
     <div className="absolute rounded-lg bg-center bg-gradient-to-b opacity-50 from-gray-400 via-gray-700 to-black w-full h-72" />
     <div className="flex flex-col rounded-lg p-4 items-center justify-center absolute w-full h-full">

@@ -27,15 +27,11 @@ export default function Home({ posts }) {
         <div className="lg:col-span-8 col-span-1">
           {posts.map((post, index) => <PostCard post={post.node} key={index} />)}
         </div>
-
         <div className="lg:col-span-4 col-span-1">
           <div className="lg:sticky relative top-8">
             <PostWidget />
           </div>
         </div>
-        {/* <div>
-          <Pagination />
-        </div> */}
       </div>
     </div>
   );
