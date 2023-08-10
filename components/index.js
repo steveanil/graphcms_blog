@@ -8,3 +8,5 @@ export { default as CommentsForm } from './CommentsForm';
 export { default as Comments } from './Comments';
 export { default as Loader } from './Loader';
 export { default as AdjacentPostCard } from './AdjacentPostCard';
+export { default as SearchBar } from './SearchBar';
+export { default as SearchPosts } from './SearchPosts';

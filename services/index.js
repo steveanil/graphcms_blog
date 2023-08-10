@@ -48,6 +48,44 @@ export const getPosts = async () => {
   return result.postsConnection.edges;
 };
 
+export const searchQuery = async () => {
+  const query = gql`
+    query searchQuery{
+      posts {
+        slug
+        title
+        excerpt
+      }
+    }
+  `;
+  const result = await request(graphqlAPI, query);
+
+  return result.posts;
+};
+
+export const getSearchPost = async (slug) => {
+  const query = gql`
+    query getSearchPost($slug: String!){
+      posts(orderBy: updatedAt_DESC, first: 50, where: {_search: $slug}) {
+        slug
+        excerpt
+        title
+        author {
+          name
+          photo {
+            url
+          }
+        }
+        updatedAt
+      }
+    }
+  `;
+
+  const result = await request(graphqlAPI, query, { slug });
+
+  return result.posts;
+};
+
 export const getCategories = async () => {
   const query = gql`
     query GetGategories {

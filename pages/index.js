@@ -1,7 +1,7 @@
 /* eslint-disable react/function-component-definition */
 import Head from 'next/head';
 
-import { PostCard } from '../components';
+import { PostCard, SearchBar } from '../components';
 import { getPosts } from '../services';
 
 // posts is a prop
@@ -11,6 +11,8 @@ export default function Home({ posts }) {
       <Head lang="en">
         <title>Bible Apologist</title>
         <meta httpEquiv="content-language" content="en-gb" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
         <link rel="canonical" href="https://www.bibleapologist.com/" />
 
         <meta name="description" content="Bible Apologist aims to defend the bible from lies and deception, provide sound theology to the users of this apologetics website and expose the truth about Islam and Muhammad." />
@@ -22,7 +24,7 @@ export default function Home({ posts }) {
         <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      <SearchBar />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
         {posts.map((post, index) => <PostCard post={post.node} key={index} />)}
       </div>
