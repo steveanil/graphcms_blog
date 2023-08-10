@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 const PostCard = ({ post }) => (
-  <div className="bg-white dark:bg-slate-800 shadow-lg rounded-xl p-0 lg:p-5 pb-10">
+  <div className="bg-white dark:bg-slate-800 shadow-lg rounded-xl p-4 lg:p-5 pb-10">
     <div className="relative overflow-hidden shadow-md pb-52 lg:pb-60 mb-7">
       <Image
         priority
@@ -17,7 +17,7 @@ const PostCard = ({ post }) => (
         className="object-top absolute w-full h-full object-cover shadow-lg rounded-t-lg lg:rounded-xl"
       />
     </div>
-    <h1 className="md:truncate transition duration-700 px-4 lg:px-0 text-center mb-5 cursor-pointer hover:text-blue-600 dark:hover:text-slate-400 text-ellipsis text-2xl font-semibold dark:text-slate-50">
+    <h1 className="md:truncate dark:hover:text-slate-400 duration-500 text-center mb-3 text-2xl font-semibold text-gray-800 dark:text-slate-50">
       <Link href={`/post/${post.slug}`}>
         {post.title}
       </Link>
@@ -44,10 +44,10 @@ const PostCard = ({ post }) => (
         </span>
       </div>
     </div>
-    <p className="line-clamp-2 px-4 lg:px-1 text-center text-lg text-gray-700 pt-5 font-normal dark:text-slate-200">{post.excerpt}</p>
+    <p className="line-clamp-2 text-center text-lg text-gray-700 pt-2 font-normal dark:text-slate-200">{post.excerpt}</p>
     <div className="flex justify-center items-center pt-10 pb-5">
       <Link href={`/post/${post.slug}`}>
-        <span className="transition duration-500 ease transform hover:-translate-y-1 bg-blue-600 text-lg font-medium rounded-full text-white px-8 py-4 cursor-pointer">
+        <span className="transition duration-500 ease transform hover:-translate-y-1 bg-blue-600 hover:bg-blue-700 text-lg font-medium rounded-full text-white px-8 py-4 cursor-pointer">
           Continue Reading
         </span>
       </Link>
