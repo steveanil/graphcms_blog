@@ -10,5 +10,5 @@ module.exports = {
       '2/3': '66.6667%',
     },
   },
-  plugins: [require('@tailwindcss/line-clamp')],
+  // plugins: [require('@tailwindcss/line-clamp')],
 };

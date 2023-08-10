@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 const SearchPosts = ({ post }) => (
-  <div className="bg-white dark:bg-slate-800 shadow-lg rounded-xl p-0 lg:p-5 pb-10">
+  <div className="bg-white dark:bg-slate-800 shadow-lg rounded-xl p-6 lg:p-5 pb-10">
     <h1 className="md:truncate dark:hover:text-slate-400 duration-500 text-center mb-3 text-2xl font-semibold text-gray-800 dark:text-slate-50">
       <Link href={`/post/${post.slug}`}>
         {post.title}
