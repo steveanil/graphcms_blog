@@ -14,7 +14,7 @@ const PostDetails = ({ post }) => {
   }
 
   return (
-    <div className="container mx-auto px-10 mb-8">
+    <>
       <Head lang="en-gb">
         <title lang="en-gb">{`${post.title} - Bible Apologist`}</title>
 
@@ -32,19 +32,21 @@ const PostDetails = ({ post }) => {
         <meta property="og:image:alt" content={`${post.title}`} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-        <div className="col-span-1 lg:col-span-8">
-          <PostDetail post={post} />
-          <Author author={post.author} />
-          <AdjacentPosts slug={post.slug} updatedAt={post.updatedAt} />
-          <CommentsForm slug={post.slug} />
-          <Comments slug={post.slug} />
-        </div>
-        <div className="col-span-1 lg:col-span-4 relative lg:sticky top-8">
-          <PostWidget slug={post.slug} categories={post.categories.map((category) => category.slug)} />
+      <div className="container mx-auto px-10 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          <div className="col-span-1 lg:col-span-8">
+            <PostDetail post={post} />
+            <Author author={post.author} />
+            <AdjacentPosts slug={post.slug} updatedAt={post.updatedAt} />
+            <CommentsForm slug={post.slug} />
+            <Comments slug={post.slug} />
+          </div>
+          <div className="col-span-1 lg:col-span-4 relative lg:sticky top-8">
+            <PostWidget slug={post.slug} categories={post.categories.map((category) => category.slug)} />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 export default PostDetails;
@@ -66,3 +68,4 @@ export async function getStaticPaths() {
     fallback: true,
   };
 }
+
