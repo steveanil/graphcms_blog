@@ -5,18 +5,20 @@ import { submitComment } from '../services';
 
 const CommentsForm = ({ slug }) => {
   const [error, setError] = useState(false);
-  const [localStorage, setLocalStorage] = useState(null);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', comment: '', storeData: false });
 
   useEffect(() => {
-    setLocalStorage(window.localStorage);
-    const initalFormData = {
-      name: window.localStorage.getItem('name'),
-      email: window.localStorage.getItem('email'),
-      storeData: window.localStorage.getItem('name') || window.localStorage.getItem('email'),
+    const storedName = localStorage.getItem('name');
+    const storedEmail = localStorage.getItem('email');
+
+    const initialFormData = {
+      name: storedName || '',
+      email: storedEmail || '',
+      comment: '', // Initialize comment to an empty string
+      storeData: !!(storedName || storedEmail), // Initialize storeData as a boolean
     };
-    setFormData(initalFormData);
+    setFormData(initialFormData);
   }, []);
 
   const onInputChange = (e) => {
@@ -75,7 +77,6 @@ const CommentsForm = ({ slug }) => {
         }
       });
   };
-
   return (
     <div className="bg-white dark:bg-slate-800 shadow-lg rounded-lg p-8 pb-12 mb-8">
       <h3 className="text-xl mb-8 dark:text-white font-semibold border-b pb-4">Leave a Comment or a Question!</h3>
