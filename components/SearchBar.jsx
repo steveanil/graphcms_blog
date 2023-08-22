@@ -18,26 +18,26 @@ const SearchBar = () => {
   }
 
   return (
-    <form className="w-full max-w-lg relative pb-10 mx-auto flex justify-center" onSubmit={handleSubmit}>
-      <div className="relative w-full">
+    <form className="max-w-lg relative lg:pt-0 pt-3 mx-auto flex justify-center" onSubmit={handleSubmit}>
+      <div className="relative">
         <input
           type="search"
           required
           value={searches}
           onChange={(e) => setSearches(e.target.value)}
-          className="p-3 md:p-4 rounded-full bg-slate-800 text-white w-full outline-none hover:outline-cyan-300"
-          placeholder="Search For Posts..."
+          className="p-3 md:p-2 text-white rounded-full w-full bg-slate-700 border-black outline-none"
+          placeholder=" Search Posts..."
           aria-label="Search"
         />
         <button
-          className="absolute right-0 top-1/2 -translate-y-1/2 p-3 md:p-4 bg-slate-900 rounded-full"
+          className="absolute right-0 top-1/2 -translate-y-1/2 p-3 md:p-3 bg-slate-900 rounded-full"
           type="submit"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
-            className="h-5 w-5 md:h-6 md:w-6 text-cyan-100 hover:text-cyan-300"
+            className="h-5 w-5 md:h-5 md:w-5 text-cyan-100 hover:text-cyan-200"
           >
             <path
               fillRule="evenodd"

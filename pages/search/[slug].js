@@ -2,7 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 
 import { getSearchPost, searchQuery } from '../../services';
-import { Loader, SearchBar, SearchPosts } from '../../components';
+import { Loader, SearchPosts } from '../../components';
 
 const searchPost = ({ posts }) => {
   const router = useRouter();
@@ -13,7 +13,6 @@ const searchPost = ({ posts }) => {
 
   return (
     <div className="container mx-auto px-10 mb-8">
-      <SearchBar />
       {router.isFallback ? (
         <Loader />
       ) : (

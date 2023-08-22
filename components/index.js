@@ -10,3 +10,4 @@ export { default as Loader } from './Loader';
 export { default as AdjacentPostCard } from './AdjacentPostCard';
 export { default as SearchBar } from './SearchBar';
 export { default as SearchPosts } from './SearchPosts';
+export { default as InfiniteScrollPage } from './InfiniteScrollPage';

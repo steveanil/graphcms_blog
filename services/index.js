@@ -6,8 +6,8 @@ const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 // MyQuery is just a variable/name
 export const getPosts = async () => {
   const query = gql`
-    query MyQuery {
-      postsConnection(first: 50, orderBy: updatedAt_DESC) {        
+    query MyQuery($after: String) {
+      postsConnection(first: 50, after: $after, orderBy: updatedAt_DESC) {        
         edges {
           cursor
           node {
@@ -47,6 +47,36 @@ export const getPosts = async () => {
 
   return result.postsConnection.edges;
 };
+
+// export const getItems = async () => {
+//   const query = gql`
+//     query getItems (){
+//       next:posts(first: 6, orderBy: updatedAt_DESC) {
+//         author {
+//           bio
+//           name
+//           id
+//           photo {
+//             url
+//           }
+//         }
+//         updatedAt
+//         slug
+//         title
+//         excerpt
+//         featuredImage {
+//           url
+//         }
+//         categories {
+//           name
+//           slug
+//         }
+//       }
+//     }
+//   `;
+//   const result = await request(graphqlAPI, query);
+//   return result.postsConnections.edges;
+// };
 
 export const searchQuery = async () => {
   const query = gql`

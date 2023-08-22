@@ -1,7 +1,7 @@
 /* eslint-disable react/function-component-definition */
 import Head from 'next/head';
 
-import { PostCard, SearchBar } from '../components';
+import { InfiniteScrollPage, PostCard, SearchBar } from '../components';
 import { getPosts } from '../services';
 
 // posts is a prop
@@ -26,7 +26,8 @@ export default function Home({ posts }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>;
       <div className="container mx-auto px-10 mb-8">
-        <SearchBar />
+        {/* <SearchBar /> */}
+        {/* <InfiniteScrollPage /> */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
           {posts.map((post, index) => <PostCard post={post.node} key={index} />)}
         </div>
@@ -38,7 +39,7 @@ export default function Home({ posts }) {
 // getStaticProps is from nextJS. This will query all this information and statically render during build time and display
 
 export async function getStaticProps() {
-  const posts = (await getPosts()) || [];
+  const posts = (await getPosts(null)) || [];
 
   // return data as props
   return {

@@ -38,7 +38,7 @@ const PostCard = ({ post }) => (
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
         </svg>
         <span className="dark:text-slate-50">
-          Updated At:
+          Updated:
           {' '}
           {moment(post.updatedAt).format('MMM DD, YYYY')}
         </span>
@@ -47,8 +47,8 @@ const PostCard = ({ post }) => (
     <p className="line-clamp-2 text-center text-lg text-gray-700 pt-2 font-normal dark:text-slate-200">{post.excerpt}</p>
     <div className="flex justify-center items-center pt-10 pb-5">
       <Link href={`/post/${post.slug}`}>
-        <span className="transition duration-500 ease transform hover:-translate-y-1 bg-blue-600 hover:bg-blue-700 text-lg font-medium rounded-full text-white px-8 py-4 cursor-pointer">
-          Continue Reading
+        <span className="transition duration-500 ease transform hover:-translate-y-1 bg-blue-600 hover:bg-blue-700 text-lg font-medium rounded-full text-white px-16 py-4 cursor-pointer">
+          Read Article
         </span>
       </Link>
     </div>
