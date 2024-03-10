@@ -1,11 +1,31 @@
+/* eslint-disable comma-dangle */
+/* eslint-disable no-shadow */
+/* eslint-disable quotes */
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/function-component-definition */
-import Head from 'next/head';
+import Head from "next/head";
+import React, { useState, useEffect } from "react";
 
-import { InfiniteScrollPage, PostCard, SearchBar } from '../components';
-import { getPosts } from '../services';
+import { PostCard } from "../components";
+import { getPosts } from "../services";
 
-// posts is a prop
-export default function Home({ posts }) {
+// initialPosts is a prop
+export default function Home({ initialPosts }) {
+  // loads initial 7 posts
+  const [posts, setPosts] = useState(initialPosts.posts || []);
+  const [after, setAfter] = useState(initialPosts.pageInfo?.endCursor);
+  const [hasNextPage, setHasNextPage] = useState(
+    initialPosts.pageInfo?.hasNextPage
+  );
+
+  const handleLoadMore = async () => {
+    // When you click load more, it will load 6 posts everytime
+    const newPostsData = await getPosts(6, after);
+    setPosts([...posts, ...newPostsData.posts]);
+    setAfter(newPostsData.pageInfo.endCursor);
+    setHasNextPage(newPostsData.pageInfo.hasNextPage);
+  };
+
   return (
     <>
       <Head lang="en">
@@ -15,21 +35,43 @@ export default function Home({ posts }) {
 
         <link rel="canonical" href="https://www.bibleapologist.com/" />
 
-        <meta name="description" content="Bible Apologist aims to defend the bible from lies and deception, provide sound theology to the users of this apologetics website and expose the truth about Islam and Muhammad." />
+        <meta
+          name="description"
+          content="Bible Apologist aims to defend the bible from lies and deception, provide sound theology to the users of this apologetics website and expose the truth about Islam and Muhammad."
+        />
+        <meta name="author" content="Steed of Truth" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="keywords" content="Bible, Bible Apologist, bible apologist, Trinity, Jesus Christ, Apologetics, Quran, Muhammad, Christianity" />
+        <meta
+          name="keywords"
+          content="bible, bible apologist, apologist, apologetics, Trinity, Jesus Christ, Apologetics, Quran, Muhammad, Christianity"
+        />
 
         <meta property="og:title" content="Bible Apologist" />
-        <meta property="og:description" content="Bible Apologist aims to defend the bible from lies and deception, provide sound theology to the users of this apologetics website and expose the truth about Islam and Muhammad." />
+        <meta
+          property="og:description"
+          content="Bible Apologist aims to defend the bible from lies and deception, provide sound theology to the users of this apologetics website and expose the truth about Islam and Muhammad."
+        />
         <meta property="og:url" content="https://www.bibleapologist.com/" />
         <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
-      </Head>;
-      <div className="container mx-auto px-10 mb-8">
-        {/* <SearchBar /> */}
-        {/* <InfiniteScrollPage /> */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-          {posts.map((post, index) => <PostCard post={post.node} key={index} />)}
+      </Head>
+      ;
+      <div className="container mx-auto px-9 lg:px-0 mb-8">
+        <div className="grid grid-cols-1 pb-8 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          {posts.map((post, index) => (
+            <PostCard post={post} key={index} />
+          ))}
+        </div>
+        {/* Render your posts here */}
+        <div className="container flex justify-center">
+          {hasNextPage && (
+            <span
+              onClick={handleLoadMore}
+              className="transition duration-500 ease transform bg-blue-600 hover:bg-blue-700 text-xl font-semibold rounded-3xl text-white px-14 py-4 cursor-pointer"
+            >
+              Load More
+            </span>
+          )}
         </div>
       </div>
     </>
@@ -37,15 +79,13 @@ export default function Home({ posts }) {
 }
 
 // getStaticProps is from nextJS. This will query all this information and statically render during build time and display
-
 export async function getStaticProps() {
-  const posts = (await getPosts(null)) || [];
+  const initialPosts = (await getPosts()) || [];
 
   // return data as props
   return {
     props: {
-      posts,
+      initialPosts,
     },
   };
 }
-

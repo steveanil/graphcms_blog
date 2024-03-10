@@ -2,6 +2,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import { Layout } from '../components';
 
@@ -15,8 +16,8 @@ const MyApp = ({ Component, pageProps }) => (
       <Component {...pageProps} />
     </main>
     <Analytics />
+    <SpeedInsights />
   </Layout>
-
 );
 
 export default MyApp;

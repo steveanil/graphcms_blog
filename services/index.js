@@ -3,11 +3,10 @@ import { request, gql } from 'graphql-request';
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 
-// MyQuery is just a variable/name
-export const getPosts = async () => {
+export const getPosts = async (first = 6, after = null) => {
   const query = gql`
-    query MyQuery($after: String) {
-      postsConnection(first: 50, after: $after, orderBy: updatedAt_DESC) {        
+    query MyQuery($first: Int!, $after: String) {
+      postsConnection(first: $first, after: $after, orderBy: updatedAt_DESC) {
         edges {
           cursor
           node {
@@ -34,53 +33,22 @@ export const getPosts = async () => {
         }
         pageInfo {
           hasNextPage
-          hasPreviousPage
-          startCursor
           endCursor
-          pageSize
         }
       }
     }
   `;
 
-  const result = await request(graphqlAPI, query);
-
-  return result.postsConnection.edges;
+  const result = await request(graphqlAPI, query, { first, after });
+  return {
+    posts: result.postsConnection.edges.map((edge) => edge.node),
+    pageInfo: result.postsConnection.pageInfo,
+  };
 };
-
-// export const getItems = async () => {
-//   const query = gql`
-//     query getItems (){
-//       next:posts(first: 6, orderBy: updatedAt_DESC) {
-//         author {
-//           bio
-//           name
-//           id
-//           photo {
-//             url
-//           }
-//         }
-//         updatedAt
-//         slug
-//         title
-//         excerpt
-//         featuredImage {
-//           url
-//         }
-//         categories {
-//           name
-//           slug
-//         }
-//       }
-//     }
-//   `;
-//   const result = await request(graphqlAPI, query);
-//   return result.postsConnections.edges;
-// };
 
 export const searchQuery = async () => {
   const query = gql`
-    query searchQuery{
+    query searchQuery {
       posts {
         slug
         title
@@ -95,8 +63,8 @@ export const searchQuery = async () => {
 
 export const getSearchPost = async (slug) => {
   const query = gql`
-    query getSearchPost($slug: String!){
-      posts(orderBy: updatedAt_DESC, first: 50, where: {_search: $slug}) {
+    query getSearchPost($slug: String!) {
+      posts(orderBy: updatedAt_DESC, first: 50, where: { _search: $slug }) {
         slug
         excerpt
         title
@@ -119,10 +87,10 @@ export const getSearchPost = async (slug) => {
 export const getCategories = async () => {
   const query = gql`
     query GetGategories {
-        categories {
-          name
-          slug
-        }
+      categories {
+        name
+        slug
+      }
     }
   `;
 
@@ -134,14 +102,14 @@ export const getCategories = async () => {
 
 export const getPostDetails = async (slug) => {
   const query = gql`
-    query GetPostDetails($slug : String!) {
-      post(where: {slug: $slug}) {
+    query GetPostDetails($slug: String!) {
+      post(where: { slug: $slug }) {
         title
         excerpt
         featuredImage {
           url
         }
-        author{
+        author {
           name
           bio
           photo {
@@ -170,7 +138,10 @@ export const getSimilarPosts = async (categories, slug) => {
   const query = gql`
     query GetPostDetails($slug: String!, $categories: [String!]) {
       posts(
-        where: {slug_not: $slug, AND: {categories_some: {slug_in: $categories}}}
+        where: {
+          slug_not: $slug
+          AND: { categories_some: { slug_in: $categories } }
+        }
         last: 2
       ) {
         title
@@ -190,11 +161,11 @@ export const getSimilarPosts = async (categories, slug) => {
 
 export const getAdjacentPosts = async (updatedAt, slug) => {
   const query = gql`
-    query GetAdjacentPosts($updatedAt: DateTime!,$slug:String!) {
-      next:posts(
+    query GetAdjacentPosts($updatedAt: DateTime!, $slug: String!) {
+      next: posts(
         first: 1
         orderBy: updatedAt_DESC
-        where: {slug_not: $slug, AND: {updatedAt_lte: $updatedAt}}
+        where: { slug_not: $slug, AND: { updatedAt_lte: $updatedAt } }
       ) {
         title
         featuredImage {
@@ -203,10 +174,10 @@ export const getAdjacentPosts = async (updatedAt, slug) => {
         updatedAt
         slug
       }
-      previous:posts(
+      previous: posts(
         first: 1
         orderBy: updatedAt_ASC
-        where: {slug_not: $slug, AND: {updatedAt_gte: $updatedAt}}
+        where: { slug_not: $slug, AND: { updatedAt_gte: $updatedAt } }
       ) {
         title
         featuredImage {
@@ -226,7 +197,11 @@ export const getAdjacentPosts = async (updatedAt, slug) => {
 export const getCategoryPost = async (slug) => {
   const query = gql`
     query GetCategoryPost($slug: String!) {
-      postsConnection(where: {categories_some: {slug: $slug}}, orderBy: updatedAt_DESC, first: 50) {
+      postsConnection(
+        where: { categories_some: { slug: $slug } }
+        orderBy: updatedAt_DESC
+        first: 50
+      ) {
         edges {
           cursor
           node {
@@ -274,8 +249,8 @@ export const submitComment = async (obj) => {
 
 export const getComments = async (slug) => {
   const query = gql`
-    query GetComments($slug:String!) {
-      comments(where: {post: {slug:$slug}}){
+    query GetComments($slug: String!) {
+      comments(where: { post: { slug: $slug } }) {
         name
         updatedAt
         comment

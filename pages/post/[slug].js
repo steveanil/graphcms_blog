@@ -1,10 +1,19 @@
-import React from 'react';
-import Head from 'next/head';
-import { useRouter } from 'next/router';
+/* eslint-disable quotes */
+import React from "react";
+import Head from "next/head";
+import moment from "moment";
+import { useRouter } from "next/router";
 
-import { getPosts, getPostDetails } from '../../services';
-import { PostDetail, PostWidget, Author, Comments, CommentsForm, Loader } from '../../components';
-import { AdjacentPosts } from '../../sections';
+import { getPosts, getPostDetails } from "../../services";
+import {
+  PostDetail,
+  PostWidget,
+  Author,
+  Comments,
+  CommentsForm,
+  Loader,
+} from "../../components";
+import { AdjacentPosts } from "../../sections";
 
 const PostDetails = ({ post }) => {
   const router = useRouter();
@@ -18,12 +27,22 @@ const PostDetails = ({ post }) => {
       <Head lang="en-gb">
         <title lang="en-gb">{`${post.title} - Bible Apologist`}</title>
 
-        <link rel="canonical" href={`https://www.bibleapologist.com/post/${post.slug}`} />
+        <link
+          rel="canonical"
+          href={`https://www.bibleapologist.com/post/${post.slug}`}
+        />
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content={`${post.excerpt}`} />
-        <meta property="url" content={`https://www.bibleapologist.com/post/${post.slug}`} />
-        <meta name="keywords" content={`${post.title}, Bible, Bible Apologist, bible apologist, Trinity, Jesus Christ, Apologetics, Answering Islam, Islam, Quran, Muhammad, Christianity`} />
+        <meta name="author" content={post.author.name} />
+        <meta
+          name="date"
+          content={`${moment(post.updatedAt).format("MMM DD, YYYY")}`}
+        />
+        <meta
+          name="keywords"
+          content={`${post.title}, Bible, Bible Apologist, Trinity, Jesus, jesus, Islam, Quran, Muhammad`}
+        />
 
         <meta property="og:title" content={`${post.title} - Bible Apologist`} />
         <meta property="og:description" content={`${post.excerpt}`} />
@@ -42,7 +61,10 @@ const PostDetails = ({ post }) => {
             <Comments slug={post.slug} />
           </div>
           <div className="col-span-1 lg:col-span-4 relative lg:sticky top-8">
-            <PostWidget slug={post.slug} categories={post.categories.map((category) => category.slug)} />
+            <PostWidget
+              slug={post.slug}
+              categories={post.categories.map((category) => category.slug)}
+            />
           </div>
         </div>
       </div>
@@ -62,10 +84,20 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const posts = await getPosts(1, null);
-  return {
-    paths: posts.map(({ node: { slug } }) => ({ params: { slug } })),
-    fallback: true,
-  };
-}
+  const { posts } = await getPosts(7); // Fetch the first 10 posts for generating paths
 
+  // Ensure you're accessing the posts array correctly
+  const paths = posts.map(({ slug }) => ({
+    params: { slug },
+  }));
+
+  return {
+    paths,
+    fallback: true, // can also be 'blocking' if you want server-side rendering on-demand for paths not generated at build time
+  };
+  // const posts = await getPosts(1, null);
+  // return {
+  //   paths: posts.map(({ node: { slug } }) => ({ params: { slug } })),
+  //   fallback: true, // can also be 'blocking' if you want server-side rendering on-demand for paths not generated at build time
+  // };
+}

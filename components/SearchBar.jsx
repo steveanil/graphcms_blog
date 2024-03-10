@@ -25,8 +25,8 @@ const SearchBar = () => {
           required
           value={searches}
           onChange={(e) => setSearches(e.target.value)}
-          className="p-3 md:p-2 text-white rounded-full w-full bg-slate-700 border-black outline-none"
-          placeholder=" Search Posts..."
+          className="p-3 md:p-2 text-white rounded-3xl w-full bg-slate-700 border-black outline-none"
+          placeholder=" Search Posts ..."
           aria-label="Search"
         />
         <button
