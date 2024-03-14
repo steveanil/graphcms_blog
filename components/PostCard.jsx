@@ -61,7 +61,7 @@ const PostCard = ({ post }) => (
       {post.excerpt}
     </p>
     <div className="flex justify-center items-center pt-10 pb-5">
-      <Link href={`/post/${post.slug}`}>
+      <Link href={`/post/${post.slug}`} target="_blank">
         <span className="transition duration-500 ease transform hover:-translate-y-1 bg-blue-600 hover:bg-blue-700 text-lg font-medium rounded-full text-white px-16 py-4 cursor-pointer">
           Read Article
         </span>

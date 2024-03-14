@@ -22,7 +22,7 @@ export const ToolTip = ({ message, children }) => {
   return (
     <span className="group relative">
       {children}
-      <span className="absolute flex top-10 scale-0 z-10 transition-all rounded-md bg-gray-600 p-1 text-xs text-white transform translate-x-1/2 group-hover:scale-100">
+      <span className="absolute flex top-10 scale-0 z-10 transition-all font-medium rounded-md bg-gray-600 p-2 text-sm text-white transform translate-x-1/2 group-hover:scale-100">
         {message}
       </span>
     </span>
