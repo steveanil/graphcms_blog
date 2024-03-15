@@ -87,5 +87,7 @@ export async function getStaticProps() {
     props: {
       initialPosts,
     },
+    // Revalidate at a fixed interval to update static content
+    revalidate: 10, // In seconds
   };
 }
