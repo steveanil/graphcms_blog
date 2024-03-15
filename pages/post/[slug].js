@@ -80,6 +80,7 @@ export async function getStaticProps({ params }) {
     props: {
       post: data,
     },
+    revalidate: 10,
   };
 }
 
@@ -95,9 +96,4 @@ export async function getStaticPaths() {
     paths,
     fallback: true, // can also be 'blocking' if you want server-side rendering on-demand for paths not generated at build time
   };
-  // const posts = await getPosts(1, null);
-  // return {
-  //   paths: posts.map(({ node: { slug } }) => ({ params: { slug } })),
-  //   fallback: true, // can also be 'blocking' if you want server-side rendering on-demand for paths not generated at build time
-  // };
 }
