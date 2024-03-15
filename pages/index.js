@@ -88,6 +88,6 @@ export async function getStaticProps() {
       initialPosts,
     },
     // Revalidate at a fixed interval to update static content
-    revalidate: 10, // In seconds
+    revalidate: 86400, // In seconds, 1 day
   };
 }
