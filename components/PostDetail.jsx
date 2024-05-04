@@ -51,10 +51,10 @@ const PostDetail = ({ post }) => (
           p: ({ children }) => <p className="mb-5">{children}</p>,
           bold: ({ children }) => <strong>{children}</strong>,
           h3: ({ children }) => (
-            <h3 className="text-xl font-semibold mb-4">{children}</h3>
+            <h3 className="text-xl font-bold mb-4">{children}</h3>
           ),
           h4: ({ children }) => (
-            <h4 className="text-md font-semibold mb-4">{children}</h4>
+            <h4 className="text-lg font-semibold mb-4">{children}</h4>
           ),
           blockquote: ({ children }) => (
             <div className="p-4 italic my-4 bg-gray-50 border-l-4 border-gray-300 dark:border-neutral-400 dark:text-white dark:bg-slate-500">

@@ -73,6 +73,15 @@ export default function Home({ initialPosts }) {
             </span>
           )}
         </div>
+        <div className="container">
+          <script
+            async
+            id="apg-beacon"
+            data-headless="false"
+            data-lang="en"
+            src="https://apologist.ai/beacon/agent.min.js"
+          />
+        </div>
       </div>
     </>
   );
