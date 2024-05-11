@@ -18,6 +18,7 @@ export const getPosts = async (first = 6, after = null) => {
                 url
               }
             }
+            createdAt
             updatedAt
             slug
             title
@@ -53,6 +54,9 @@ export const searchQuery = async () => {
         slug
         title
         excerpt
+        content {
+          text
+        }
       }
     }
   `;
@@ -75,6 +79,7 @@ export const getSearchPost = async (slug) => {
           }
         }
         updatedAt
+        createdAt
       }
     }
   `;
@@ -116,6 +121,7 @@ export const getPostDetails = async (slug) => {
             url
           }
         }
+        createdAt
         updatedAt
         slug
         content {

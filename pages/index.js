@@ -4,7 +4,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/function-component-definition */
 import Head from "next/head";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { PostCard } from "../components";
 import { getPosts } from "../services";
@@ -77,6 +77,8 @@ export default function Home({ initialPosts }) {
           <script
             async
             id="apg-beacon"
+            data-translation="nkjv"
+            data-color="rgb(37 99 235)"
             data-headless="false"
             data-lang="en"
             src="https://apologist.ai/beacon/agent.min.js"

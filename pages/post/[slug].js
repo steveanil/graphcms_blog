@@ -1,7 +1,7 @@
 /* eslint-disable quotes */
 import React from "react";
 import Head from "next/head";
-import moment from "moment";
+import { format } from "date-fns";
 import { useRouter } from "next/router";
 
 import { getPosts, getPostDetails } from "../../services";
@@ -25,7 +25,22 @@ const PostDetails = ({ post }) => {
   return (
     <>
       <Head lang="en-gb">
-        <title lang="en-gb">{`${post.title} - Bible Apologist`}</title>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: post.title,
+            description: post.excerpt,
+            image: post.featuredImage.url,
+            author: {
+              "@type": "Person",
+              name: post.author.name,
+            },
+            datePublished: format(new Date(post.createdAt), "yyyy-MM-dd"),
+            dateModified: format(new Date(post.updatedAt), "yyyy-MM-dd"),
+          })}
+        </script>
+        <title>{`${post.title} - Bible Apologist`}</title>
 
         <link
           rel="canonical"
@@ -37,7 +52,7 @@ const PostDetails = ({ post }) => {
         <meta name="author" content={post.author.name} />
         <meta
           name="date"
-          content={`${moment(post.updatedAt).format("MMM DD, YYYY")}`}
+          content={`${format(new Date(post.updatedAt), "yyyy-MM-dd")}`}
         />
         <meta
           name="keywords"
@@ -46,7 +61,7 @@ const PostDetails = ({ post }) => {
 
         <meta property="og:title" content={`${post.title} - Bible Apologist`} />
         <meta property="og:description" content={`${post.excerpt}`} />
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
         <meta property="og:image" content={`${post.featuredImage.url}`} />
         <meta property="og:image:alt" content={`${post.title}`} />
         <link rel="icon" href="/favicon.ico" />
