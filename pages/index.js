@@ -19,11 +19,19 @@ export default function Home({ initialPosts }) {
   );
 
   const handleLoadMore = async () => {
-    // When you click load more, it will load 6 posts everytime
-    const newPostsData = await getPosts(6, after);
-    setPosts([...posts, ...newPostsData.posts]);
-    setAfter(newPostsData.pageInfo.endCursor);
-    setHasNextPage(newPostsData.pageInfo.hasNextPage);
+    try {
+      // When you click load more, it will load 6 posts everytime
+      const newPostsData = await getPosts(6, after);
+      if (newPostsData.error) {
+        console.error('Error loading more posts:', newPostsData.error);
+        return;
+      }
+      setPosts([...posts, ...newPostsData.posts]);
+      setAfter(newPostsData.pageInfo.endCursor);
+      setHasNextPage(newPostsData.pageInfo.hasNextPage);
+    } catch (error) {
+      console.error('Error loading more posts:', error);
+    }
   };
 
   return (
@@ -40,7 +48,6 @@ export default function Home({ initialPosts }) {
           content="Bible Apologist aims to defend the bible from lies and deception, provide sound theology to the users of this apologetics website and expose the truth about Islam and Muhammad."
         />
         <meta name="author" content="Steed of Truth" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
           name="keywords"
           content="bible, bible apologist, apologist, apologetics, Trinity, Jesus Christ, Apologetics, Quran, Muhammad, Christianity"
@@ -53,13 +60,47 @@ export default function Home({ initialPosts }) {
         />
         <meta property="og:url" content="https://www.bibleapologist.com/" />
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Bible Apologist" />
+
+        {/* Twitter Card tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Bible Apologist" />
+        <meta
+          name="twitter:description"
+          content="Bible Apologist aims to defend the bible from lies and deception, provide sound theology to the users of this apologetics website and expose the truth about Islam and Muhammad."
+        />
+
+        {/* Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "Bible Apologist",
+            url: "https://www.bibleapologist.com",
+            description: "Bible Apologist aims to defend the bible from lies and deception, provide sound theology to the users of this apologetics website and expose the truth about Islam and Muhammad.",
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "Bible Apologist",
+            url: "https://www.bibleapologist.com",
+            description: "Bible Apologist aims to defend the bible from lies and deception, provide sound theology to the users of this apologetics website and expose the truth about Islam and Muhammad.",
+            publisher: {
+              "@type": "Organization",
+              name: "Bible Apologist",
+            },
+          })}
+        </script>
+
         <link rel="icon" href="/favicon.ico" />
       </Head>
       ;
       <div className="container mx-auto px-9 lg:px-0 mb-8">
         <div className="grid grid-cols-1 pb-8 md:grid-cols-2 lg:grid-cols-3 gap-12">
-          {posts.map((post, index) => (
-            <PostCard post={post} key={index} />
+          {posts.map((post) => (
+            <PostCard post={post} key={post.slug} />
           ))}
         </div>
         {/* Render your posts here */}

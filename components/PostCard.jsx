@@ -13,9 +13,8 @@ const PostCard = ({ post }) => (
         src={post.featuredImage.url}
         alt={post.title}
         fill
-        sizes="(max-width: 768px) 100vw,
-        (max-width: 1200px) 50vw,
-        33vw"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        quality={85}
         className="object-top absolute w-full h-full object-cover shadow-lg rounded-t-lg lg:rounded-xl"
       />
     </div>

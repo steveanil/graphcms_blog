@@ -2,11 +2,15 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['media.graphassets.com'],
-  },
-  eslint: {
-    // Warning: This allows production builds to successfully complete even if
-    // your project has ESLint errors.
-    ignoreDuringBuilds: true,
+    remotePatterns: [
+      {
+        protocol: 'https', // Only allow secure HTTP requests
+        hostname: 'media.graphassets.com', // The trusted hostname
+      },
+      {
+        protocol: 'https', // Only allow secure HTTP requests
+        hostname: 'ca-central-1.graphassets.com', // The trusted hostname
+      },
+    ],
   },
 };

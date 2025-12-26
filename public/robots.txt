@@ -1,0 +1,12 @@
+# Robots.txt for Bible Apologist
+# Last updated: 2025-12-25
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /search/
+
+# Sitemaps
+Sitemap: https://www.bibleapologist.com/sitemap.xml
+Sitemap: https://www.bibleapologist.com/sitemap-posts.xml
+Sitemap: https://www.bibleapologist.com/sitemap-categories.xml

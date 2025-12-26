@@ -1,27 +1,41 @@
-# Next.js + Tailwind CSS Example
+# GraphCMS Blog
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.0)](https://tailwindcss.com/blog/tailwindcss-v3) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+This is a passion project and personal hobby of mine, dedicated to exploring deep theological topics through blogging and providing a thoughtful defense of the Bible's historical and theological integrity.
 
-## Deploy your own
+## Getting Started
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
-
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+### 1. Clone the repository
 
 ```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
+git clone <your-repo-url>
+cd graphcms_blog
 ```
+
+### 2. Install dependencies
 
 ```bash
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
+npm install
 ```
+
+### 3. Run the development server
 
 ```bash
-pnpm create next-app --example with-tailwindcss with-tailwindcss-app
+npm run dev
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+### 4. Build for production
+
+```bash
+npm run build
+npm start
+```
+
+## Scripts  
+
+- `npm run dev` - Start development server with Turbopack
+- `npm run build` - Build for production
+- `npm start` - Start production server
+
+## Author
+
+Steve Anil John - [bibleapologist.com](https://www.bibleapologist.com/)
